@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document id="1pje9jTfjGMi9Ar-65dgXx34HJpL0s4zH">
+	<name>Galapagos references</name>
+	<gx:CascadingStyle kml:id="__managed_style_00C63C469431F18E2FF5">
+		<Style>
+			<IconStyle>
+				<scale>1.2</scale>
+				<Icon>
+					<href>https://earth.google.com/earth/rpc/cc/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>4</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<gx:CascadingStyle kml:id="__managed_style_1A9DE6960D31F18E2FF4">
+		<Style>
+			<IconStyle>
+				<Icon>
+					<href>https://earth.google.com/earth/rpc/cc/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>2.66667</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<StyleMap id="__managed_style_091EED102331F18E2FF4">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#__managed_style_1A9DE6960D31F18E2FF4</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#__managed_style_00C63C469431F18E2FF5</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Placemark id="085AE5C4A431B89B902E">
+		<name>Galapagos San area</name>
+		<LookAt>
+			<longitude>-90.55297859417442</longitude>
+			<latitude>-0.9042465534864299</latitude>
+			<altitude>94.67610204866064</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>344355.8342103661</range>
+			<altitudeMode>absolute</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_091EED102331F18E2FF4</styleUrl>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						-90.36432057093039,-0.3785700322660992,0 -90.55916589301209,-0.5073752161640535,0 -90.70115460142588,-0.5686149654861201,0 -90.70350810359558,-0.6284768425431418,0 -90.5158702763714,-0.7588799162659868,0 -90.42806802217569,-0.8002619472828025,0 -90.36165784521792,-0.8118384310628119,0 -90.25294753881722,-0.7831586112643675,0 -90.15285701147856,-0.7714041004155231,0 -90.09244013209928,-0.8544363915471944,0 -90.01810272967894,-0.8541298803435694,0 -90.01750555031434,-0.8007286690300897,0 -90.13082693117637,-0.7286841817809815,0 -90.12560019696525,-0.5575987399018677,0 -90.27421944505423,-0.3641450539268209,0 -90.36432057093039,-0.3785700322660992,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+</Document>
+</kml>

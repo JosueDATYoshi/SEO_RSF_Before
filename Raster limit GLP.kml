@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document id="1pje9jTfjGMi9Ar-65dgXx34HJpL0s4zH">
+	<name>Galapagos references</name>
+	<gx:CascadingStyle kml:id="__managed_style_00C63C469431F18E2FF5">
+		<Style>
+			<IconStyle>
+				<scale>1.2</scale>
+				<Icon>
+					<href>https://earth.google.com/earth/rpc/cc/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>4</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<gx:CascadingStyle kml:id="__managed_style_1A9DE6960D31F18E2FF4">
+		<Style>
+			<IconStyle>
+				<Icon>
+					<href>https://earth.google.com/earth/rpc/cc/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>2.66667</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<StyleMap id="__managed_style_091EED102331F18E2FF4">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#__managed_style_1A9DE6960D31F18E2FF4</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#__managed_style_00C63C469431F18E2FF5</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Placemark id="085AE5C4A431B89B902E">
+		<name>Galapagos area</name>
+		<LookAt>
+			<longitude>-90.55297859417442</longitude>
+			<latitude>-0.9042465534864299</latitude>
+			<altitude>94.67610204866064</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>344355.8342103661</range>
+			<altitudeMode>absolute</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_091EED102331F18E2FF4</styleUrl>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						-91.53555732025907,-0.5461921605613507,0 -91.56699300578215,-0.8529792572104039,0 -91.49949233167644,-1.036070895975163,0 -91.21242354359494,-1.096797044710432,0 -90.94636817764905,-1.066875994571554,0 -90.55907309714362,-1.313799253129348,0 -90.48720385793322,-1.38108427677527,0 -90.35126511973078,-1.39047560374328,0 -90.25437658226065,-1.338941366753769,0 -89.78852492259524,-1.412805041484994,0 -89.62276638550537,-1.425158663060538,0 -89.27643482370453,-0.7986819853001789,0 -89.22776294030922,-0.7503767124959955,0 -89.22724250083428,-0.6941618444583575,0 -89.25303727593419,-0.656517979895286,0 -89.28617170462284,-0.6527318790732179,0 -89.3114950715344,-0.6674103191143089,0 -89.81105746829384,-0.1928268876629724,0 -89.92874627667106,0.3581797534643149,0 -90.45696470230639,0.3967971279471986,0 -90.57310254204725,0.4386098314817714,0 -90.69616846575671,0.5394872224869662,0 -90.72402828412909,0.609921684517754,0 -90.7484892990561,0.6509665491391802,0 -90.7966242676942,0.6529368461861431,0 -90.79928592483908,0.5371385680359723,0 -90.83673287228761,0.3993370034868675,0 -91.09867951598363,0.26138824906048,0 -91.35287058694271,0.1917452135747054,0 -91.50465689290625,0.1200051838268166,0 -91.61821928529072,0.008517692747899253,0 -91.67680604132585,-0.3034692174836925,0 -91.67549266853031,-0.4019047979040425,0 -91.62137926442624,-0.4993726296602237,0 -91.57381169418883,-0.5154515472857826,0 -91.53555732025907,-0.5461921605613507,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+</Document>
+</kml>
