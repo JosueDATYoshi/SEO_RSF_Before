@@ -3,24 +3,37 @@
 #'
 #' Model the relative density of animals (also called range distribution or utilisation distribution) as a function of environmental predictors.
 #'
+#load data ####
 
-#' 
-#' Loading packages
+#libraries
 library(animove)
 library(ctmm)
 library(dplyr)
 library(future.apply) # for parallel processing
 library(sf)
+library(mvtnorm)
+library(terra)
 library(viridis)
 
+#code to use more power from the computer
 plan("multisession", workers = min(6, parallelly::availableCores()))
 
-#' ## Load buffalo data
-# data("buffalo") #example
-# Loading Owl Data
+#working directory 
+setwd("C:/Users/jdat9/OneDrive/Documents/GitHub/SEO_RSF_Before")
+
+#loading owl data
 load("SEO_gps_clean.Rdata") #Move2 object in GPS form
 
-#' ## Load owls in telemetry form
+#loading raster environmental data
+NDVI_flor <- raster::readAll(raster("./Rasters/mean_2023Jan_2024March_NDVI_Floreana.tif"))
+NDVI_SC <- raster::readAll(raster("./Rasters/mean_2023JanDec_NDVI_SantaCruz.tif"))
+NDVI <- terra::merge(NDVI_flor, NDVI_SC)
+elev_galap <- raster::readAll(raster("./Rasters/galapagos_elevation_30m.tif"))
+elev_AOI <- raster::readAll(raster("./Rasters/AOI_elevation_30m.tif"))
+ndvi_scale <- ndvi_colors <- colorRampPalette(c("#a60027", "#fffebe", "#036e3a"))(100)
+
+#_________________________________
+#cleaning data and transformation ####
 
 #Important function to transform data from Move2 Object into Telemetry
 move2_TO_telemetry <- function(mv2) {
@@ -44,24 +57,16 @@ move2_TO_telemetry <- function(mv2) {
   return(telem)
 }
 
-owls_tele<- move2_TO_telemetry(owls_gps) #transforming information 
-owls_tele <- owls_tele[-44] #to remove empty telemetry
+owls_tele<- move2_TO_telemetry(owls_gps) #transforming information
+#list of problematic island-hopppers individuals PS0002, PS0006, PS0011, PS0021, PS0026
+e <- c(2,6,12,28,44) #empty telemetry PS0100_OWL09
+owls_tele <- owls_tele[-e] #to remove empty telemetry
 
-#' ## Environmental data: topography and NDVI
-
-# data(buffalo_env) #example
-NDVI_flor <- terra::rast("./Rasters/mean_2023Jan_2024March_NDVI_Floreana.tif")
-NDVI_SC <- terra::rast("./Rasters/mean_2023JanDec_NDVI_SantaCruz.tif")
-NDVI <- terra::merge(NDVI_flor, NDVI_SC)
-elev_galap <- raster::readAll(raster("./Rasters/galapagos_elevation_30m.tif"))
-elev_AOI <- raster::readAll(raster("./Rasters/AOI_elevation_30m.tif"))
-
-ndvi_scale <- ndvi_colors <- colorRampPalette(c("#a60027", "#fffebe", "#036e3a"))(100) #Scale for plotting
-
-#' Project buffalo data to projection of rasters 
-# needed later when doing akde with a provided grid
-
-ctmm::projection(owls_tele) <- raster::crs(NDVI) # working for NDVI raster but not for elevation
+#Reproject information
+ctmm::projection(owls_tele) <- raster::crs(NDVI) #Projecting telemetry into NDVI CRS
+owls_mv <- move2::mt_as_move2(owls_tele) #Correct telemetry info back into move2 for plots
+crs(elev_galap) <- crs(NDVI) #Defining coordinate system for elevation
+crs(elev_AOI) <- crs(NDVI) #Defining coordinate system for elevation
 
 
 ##### Plotting code to validate information #####
@@ -70,9 +75,10 @@ terra::plot(elev_AOI)
 terra::plot(owls_gps, 
             max.plot=1, pch=16, cex=0.75, axes=T,err=F, add=T)
 
-terra::plot(NDVI, col=ndvi_scale) # alternative color blind 
-# terra::plot(NDVI, col = viridis(256))
-terra::plot(owls_tele, 
+terra::plot(NDVI, col=ndvi_scale) 
+# terra::plot(NDVI, col = viridis(256)) # alternative color blind 
+
+terra::plot(owls_mv, 
             max.plot=1, pch=16, cex=0.75, axes=T,err=F, add=T)
 
 # terra::plot(NDVI_SC, col=ndvi_scale)
@@ -99,14 +105,16 @@ owls_ctmm <- future_mapply(ctmm.select, owls_tele, owls_guess,
 
 #' Calling akde on the list of buffalos and their ctmms ensures 
 #' that a common grid is used; here we explicitly provide a common grid
-owls_akde <- akde(owls_tele, owls_ctmm) # , grid = NDVI)
+#' 
+owl_env_list <- list("NDVI" = NDVI)
+owls_akde <- akde(owls_tele, owls_ctmm, grid= owl_env_list) # , grid = NDVI)
 ### owls_akde <- akde(owls_tele, owls_ctmm, grid = elev_AOI) #Maybe a secondary option for all the area of study
 
 #' See ctmm_3_meta.R from Inês and Chris for more information
 
 #' Calculate rsf.fit for each individual
 owls_rsf <- future_mapply(rsf.fit, owls_tele, owls_akde, 
-                       MoreArgs = list(R = NDVI, #would need to be change for the analysis with elevation
+                       MoreArgs = list(R = owl_env_list, #would need to be change for the analysis with elevation
                                        integrator = "Riemann"), 
                        SIMPLIFY = FALSE, future.seed = TRUE)
 
@@ -123,9 +131,9 @@ summary(mean_rsf)
 
 #' Map the suitability for the "average" animal
 suitability_mean <- ctmm::suitability(mean_rsf, 
-                                      R = elev_Galap, #HERE I Should have all the rasters in stack
-                                      grid = elev_Galap)
+                                      R = owl_env_list, #HERE I Should have all the rasters in stack
+                                      grid = owl_env_list)
 raster::plot(suitability_mean)
-
+raster::plot(suitability_mean$est)
 
 

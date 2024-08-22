@@ -59,17 +59,22 @@ islands <- unique(deploy_db$study_site) #To have an easy reference to the island
                                         #[1]=NA which are not deployed tags
                                         #[2]=Santa Cruz
                                         #[3]=Floreana
+movebank_download_study_info(study_id = studyID)$sensor_type_ids
 
-individuals <- levels(deploy_db$individual_local_identifier) #list of all the individuals
+owls <- movebank_download_study(study_id = studyID,
+                                sensor_type_ids="GPS", 
+                                )
 
-owls <- mt_read("SEO_MoveBank_Download_20240624.csv") 
+#owls <- mt_read("SEO_MoveBank_Download_20240624.csv") #Includes all the records from ACC and GPS
+#owls_gps <- mt_read("SEO_MoveBank_Download_20240624_GPS.csv") #Pre-filtered GPS
 
 names(owls)
 
 mt_is_track_id_cleaved(owls) # see if it grouped tracks
 mt_is_time_ordered(owls) # see if it organized tracks
 
-owls_gps <- dplyr::filter(owls, !sf::st_is_empty(owls)) #Removing ACC data lines using empty Geographic data
+#Only necessary when using full database
+#owls_gps <- dplyr::filter(owls, !sf::st_is_empty(owls)) #Removing ACC data lines using empty Geographic data
             
   
 mt_has_unique_location_time_records(owls_gps) #check for duplicated points
