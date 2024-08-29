@@ -65,9 +65,10 @@ owls <- movebank_download_study(study_id = studyID,
                                 sensor_type_ids="GPS", 
                                 )
 
-#owls <- mt_read("SEO_MoveBank_Download_20240624.csv") #Includes all the records from ACC and GPS
+#owls <- mt_read("SEO_MoveBank_Download_20240828.csv") #Includes all the records from ACC and GPS
 #owls_gps <- mt_read("SEO_MoveBank_Download_20240624_GPS.csv") #Pre-filtered GPS
-
+#owls <- mt_as_move2(owls) #not working
+#owls_gps <- mt_as_move2(owls_gps) #not working
 names(owls)
 
 mt_is_track_id_cleaved(owls) # see if it grouped tracks
